@@ -1,0 +1,18 @@
+spin_manifest_version = 2
+
+[application]
+name = "s3-signer-go"
+version = "0.1.0"
+authors = ["Justin Pflueger <justin.pflueger@fermyon.com>"]
+description = ""
+
+[[trigger.http]]
+route = "/..."
+component = "s3-signer-go"
+
+[component.s3-signer-go]
+source = "main.wasm"
+allowed_outbound_hosts = []
+[component.s3-signer-go.build]
+command = "tinygo build -target=wasi -gc=leaking -no-debug -o main.wasm ."
+watch = ["**/*.go", "go.mod"]
